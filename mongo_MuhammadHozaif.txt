@@ -1,0 +1,46 @@
+ Task 1: Create database
+use MuhammadHozaif
+
+ Task 2: Create personals_collection
+db.createCollection("personals_collection")
+
+ Task 3: Insert 5 documents into personals_collection
+db.personals_collection.insertMany([
+  { registrationNumber: "04072212010", name: "ali", cityName: "Rawalpindi" },
+  { registrationNumber: "04072212011", name: "faizan", cityName: "mandi bahauddin" },
+  { registrationNumber: "04072212012", name: "huzaifa", cityName: "islamabad" },
+  { registrationNumber: "04072212013", name: "umer", cityName: "lahore" },
+  { registrationNumber: "04072212014", name: "usman", cityName: "haripur" }
+])
+
+ Task 4: Create academics_collection
+db.createCollection("academics_collection")
+
+ Task 5: Insert 5 academic records into academics_collection
+db.academics_collection.insertMany([
+  { registrationNumber: "04072212010", degree: "BSCS", enrollmentYear: 2019, favoriteCourse: "Data Structures" },
+  { registrationNumber: "04072212011", degree: "BSCS", enrollmentYear: 2020, favoriteCourse: "Operating Systems" },
+  { registrationNumber: "04072212012", degree: "BSCS", enrollmentYear: 2019, favoriteCourse: "Computer Networks" },
+  { registrationNumber: "04072212013", degree: "BSCS", enrollmentYear: 2021, favoriteCourse: "AI" },
+  { registrationNumber: "04072212014", degree: "BSCS", enrollmentYear: 2018, favoriteCourse: "DBMS" }
+])
+
+ Task 6: Display all records from both collections
+db.personals_collection.find()
+db.academics_collection.find()
+
+Task 7: Display names of students from Rawalpindi
+db.personals_collection.find({ cityName: "Rawalpindi" })
+
+Task 8: Display names of students enrolled in 2019
+db.academics_collection.find({ enrollmentYear: 2019 })
+
+Task 9: Update Rawalpindi or Islamabad to Rawalpindi/Islamabad
+db.personals_collection.updateMany(
+  { cityName: { $in: ["Rawalpindi", "islamabad"] } },
+  { $set: { cityName: "Rawalpindi/Islamabad" } }
+)
+
+ Task 10: Delete students enrolled before 2019 from academics_collection
+db.academics_collection.deleteMany({ enrollmentYear: { $lt: 2019 } })
+
